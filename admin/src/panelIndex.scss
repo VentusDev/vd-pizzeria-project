@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.vdPanel:root {
+	--appBg: #101827;
+	--appBgL: #1b2841;
+	--primaryColor: rgb(255, 166, 0);
+
+	--appContentMainColor: #fff;
+
+	--secondGradient: linear-gradient(
+		90deg,
+		rgba(240, 97, 97, 1) 0%,
+		rgba(255, 194, 102, 1) 20%,
+		rgba(254, 255, 130, 1) 40%,
+		rgba(193, 255, 130, 1) 60%,
+		rgba(80, 255, 194, 1) 80%,
+		rgba(86, 255, 253, 1) 100%
+	);
+
+	--actionColor: #6487d8;
+	--actionColorHover: #4e6eb9;
+	--appContentSecondaryColor: #1d283c;
+	--filter-reset: #2c394f;
+	--filterShadow: rgba(16, 24, 39, 0.8) 0px 6px 12px -2px,
+		rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+	--mainFC: white;
+
+	--blue: rgb(0, 71, 147);
+	--blueDarkT: rgba(16, 24, 39, 0.7);
+
+	--red: rgb(179, 0, 0);
+	--redLight: #ff3a3a;
+
+	--pink: rgb(255, 125, 147);
+
+	--white: #fcfcfc;
+	--whiteDark: rgb(211, 211, 211);
+
+	--green: rgb(0, 100, 0);
+	--greenLight: rgb(0, 190, 0);
+
+	--gold: rgb(194, 164, 68);
+	--goldLight: rgb(224, 192, 85);
+	--goldDarkTransparent: rgb(175 157 98 / 69%);
+	--goldMiddle: rgb(161, 142, 77);
+
+	--brown: rgb(83, 64, 25);
+
+	--gray: #4b4635;
+	--grayDark: #1b1b1b;
+	--grayTransparent: rgba(92, 92, 92, 0.69);
+	--grayLight: hsla(0, 0%, 100%, 0.5);
+
+	--black: rgb(0, 0, 0);
+	--blackLight: #252525;
+
+	--iconFilter: invert(70%) sepia(55%) saturate(697%) hue-rotate(334deg)
+		brightness(109%) contrast(92%);
+
+	--placeholderColor: rgb(233, 43, 43);
+}
+
+.vdPanelLight:root {
+	--appBg: #fff;
+	--appBgL: #e4e4e4;
+	--sidebar: #f3f6fd;
+	--appContentSecondaryColor: #f3f6fd;
+	--appContentMainColor: #1f1c2e;
+
+	--secondGradient: linear-gradient(
+		270deg,
+		rgba(240, 97, 97, 1) 0%,
+		rgba(255, 194, 102, 1) 20%,
+		rgba(254, 255, 130, 1) 40%,
+		rgba(193, 255, 130, 1) 60%,
+		rgba(80, 255, 194, 1) 80%,
+		rgba(86, 255, 253, 1) 100%
+	);
+
+	--actionColor: #e79e3f;
+	--actionColorHover: #503114;
+	--appContentSecondaryColor: #6fa87f;
+
+	--filterShadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+	--mainFC: black;
+
+	--blue: rgb(0, 71, 147);
+	--blueDarkT: rgb(16, 24, 39);
+
+	--red: rgb(216, 52, 52);
+	--redDark: rgb(82, 7, 7);
+	--redLight: #d78989;
+
+	--pink: rgb(255, 125, 147);
+
+	--white: #fcfcfc;
+	--whiteDark: rgb(211, 211, 211);
+
+	--green: rgb(0, 172, 0);
+	--greenLight: rgb(77, 208, 77);
+
+	--gold: rgb(127 127 127);
+	--goldLight: rgb(229 229 229);
+	--goldDarkTransparent: rgb(175 157 98 / 69%);
+	--goldMiddle: rgb(207 207 207);
+
+	--brown: rgb(83, 64, 25);
+	--gray: #4b4635;
+	--grayDark: #1b1b1b;
+	--grayTransparent: rgba(92, 92, 92, 0.69);
+	--grayLight: hsla(0, 0%, 100%, 0.5);
+
+	--black: rgb(0, 0, 0);
+	--blackLight: #252525;
+
+	--iconFilter: invert(60%) sepia(85%) saturate(697%) hue-rotate(434deg)
+		brightness(109%) contrast(92%) hue-rotate(330deg);
+
+	--placeholderColor: rgb(95, 59, 6);
+}
+
+$font-small: 14px;
+$font-medium: 16px;
+$font-large: 24px;
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow-y: scroll;
+	font-family: 'Poppins', sans-serif;
+	background-color: var(--appBg);
+	color: var(--appContentMainColor);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow-x: hidden;
+}
+
+#panelLayout {
+	width: auto;
+	display: flex;
+	select {
+		padding: 10px;
+	}
+}
+
+.displayNone {
+	display: none !important;
+}
+
+.adminBox {
+	overflow-y: scroll;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+	height: 5px;
+	width: 3px;
+}
+*::-webkit-scrollbar-track {
+	border-radius: 5px;
+	background-color: #ebebeb;
+}
+
+*::-webkit-scrollbar-track:hover {
+	background-color: #c2b9b7;
+}
+
+*::-webkit-scrollbar-track:active {
+	background-color: #1399c2;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 19px;
+	background-color: #0a2775;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: #252ea3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+	background-color: #5663a3;
+}

@@ -1,0 +1,29 @@
+.modeToggle .switch {
+	position: relative;
+	display: inline-block;
+	height: 22px;
+	width: 40px;
+	border-radius: 25px;
+	background-color: var(--red);
+	cursor: pointer;
+}
+
+.modeToggle.active .switch {
+	background-color: var(--blue);
+}
+.switch:before {
+	content: '';
+	position: absolute;
+	left: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+	height: 15px;
+	width: 15px;
+	background-color: var(--white);
+	border-radius: 50%;
+	transition: var(--tran-03);
+}
+
+.modeToggle.active .switch:before {
+	left: 20px;
+}

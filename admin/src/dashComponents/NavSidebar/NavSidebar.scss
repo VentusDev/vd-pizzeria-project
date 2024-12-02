@@ -1,0 +1,234 @@
+:root{
+	/* ====== Transition ====== */
+	--tran05: all 0.5s ease;
+}
+
+.dashboard{
+	position: relative;
+	left: 250px;
+	max-height: 100vh;
+	padding: 10px;
+	padding: 10px 14px;
+	transition: var(--tran05);
+}
+
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 250px;
+	padding: 20px 15px 5px;
+	background-color: var(--appBgL);
+	border-right: 1px solid var(--actionColor);
+	transition: var(--tran05);
+	z-index: 2;
+}
+nav.close{
+	width: 73px;
+}
+nav .navHeader{
+	display: flex;
+	align-items: center;
+}
+nav .navHeader .userName{
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--mainFC);
+	margin-left: 14px;
+	transition: var(--tran05);
+}
+nav.close .userName{
+	opacity: 0;
+	pointer-events: none;
+}
+nav .menuItems{
+	margin-top: 40px;
+	height: calc(100% - 90px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
+}
+.menuItems li{
+	list-style: none;
+}
+.menuItems li a{
+	display: flex;
+	gap: 15px;
+	align-items: center;
+	height: 50px;
+	text-decoration: none;
+	position: relative;
+	white-space: nowrap;
+	transition: 5s ease;
+	outline: none;
+}
+
+.menuItems li .pagesLinks{
+	margin: 30px 0;
+}
+.nav-links{
+	overflow: hidden;
+}
+.nav-links li a:hover:before{
+	content: '';
+	position: absolute;
+	left: -7px;
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	background-color: var(--primaryColor);
+}
+.modeToggle.active li a:hover:before{
+	background-color: var(--mainFC);
+}
+.menuItems li a svg{
+	font-size: 1rem;
+	max-width: 45px;
+	//height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	fill: var(--mainFC);
+}
+.menuItems li a .linkName{
+	font-size: 0.8rem;
+	font-weight: 400;
+	color: var(--black-light-color);
+	transition: var(--tran05);
+}
+nav.close li a .linkName{
+	opacity: 0;
+	pointer-events: none;
+}
+.nav-links li a:hover svg,
+.nav-links li a:hover .linkName{
+	color: var(--primaryColor);
+	fill: var(--primaryColor);
+}
+.modeToggle.active .nav-links li a:hover svg,
+.modeToggle.active .nav-links li a:hover .linkName{
+	color: var(--mainFC);
+	fill: var(--mainFC);
+}
+.menuItems .logoutMode{
+	padding-top: 10px;
+	border-top: 1px solid var(--actionColor);
+	a{
+		display: flex;
+		justify-content: space-between;
+	}
+}
+.menuItems .mode{
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+.menuItems .modeToggle,
+.logOut{
+	position: absolute;
+	right: 14px;
+	height: 50px;
+	min-width: 45px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	
+}
+
+.navLinks li a svg{
+	right: 8px;
+	height: 30px;
+	min-width: 30px;
+}
+
+
+
+.menuItems .logOut{
+	right: 0;
+}
+
+@media (max-width: 2000px){
+	nav{
+		width: 73px;
+	}
+	nav.close{
+		width: 250px;
+	}
+	nav .userName{
+		opacity: 0;
+		pointer-events: none;
+	}
+	nav.close .userName{
+		opacity: 1;
+		pointer-events: auto;
+	}
+	nav li a .linkName{
+		opacity: 0;
+		pointer-events: none;
+	}
+	nav.close li a .linkName{
+		opacity: 1;
+		pointer-events: auto;
+	}
+	nav ~ .dashboard{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	nav.close ~ .dashboard{
+		left: 250px;
+		width: calc(100% - 250px);
+	}
+	nav ~ .dashboard .top{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	nav.close ~ .dashboard .top{
+		left: 250px;
+		width: calc(100% - 250px);
+	}
+	.activity .activity-data{
+		overflow-x: scroll;
+	}
+}
+
+@media (max-width: 780px){
+	.dash-content .boxes .box{
+		width: calc(100% / 2 - 15px);
+		margin-top: 15px;
+	}
+}
+@media (max-width: 560px){
+	.dash-content .boxes .box{
+		width: 100%;
+	}
+}
+@media (max-width: 500px){
+	nav ~ .dashboard{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	nav.close ~ .dashboard{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	nav ~ .dashboard .top{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	nav.close ~ .dashboard .top{
+		left: 73px;
+		width: calc(100% - 73px);
+	}
+	.dashboard .top .sidebar-toggle{
+		display: none;
+	}
+}
+
+@media (max-width: 500px){
+	.dashboard{
+		padding: 0;
+	}
+}

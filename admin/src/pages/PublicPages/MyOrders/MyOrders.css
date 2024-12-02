@@ -1,0 +1,111 @@
+.myOrders {
+	margin: 80px 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.myOrders h2,
+h4 {
+	color: var(--brown);
+	margin-left: 50px;
+	line-height: 2;
+}
+
+.myOrders .container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+	border: 3px solid var(--white);
+	position: relative;
+	width: 100vw;
+}
+
+.myOrdersOrder {
+	display: grid;
+	grid-template-columns: 0.5fr 3fr 0.5fr 0.5fr 2fr 0.5fr;
+	align-items: center;
+	gap: 30px;
+	font-size: 14px;
+	padding: 10px 20px;
+	color: var(--black);
+	border: 1px solid var(--second-color);
+	border-bottom: 3px solid var(--white);
+	background-color: var(--grayLight);
+	line-height: 2;
+}
+
+.myOrdersOrder:nth-child(2n) {
+	background-color: var(--grayDark);
+	color: var(--white);
+}
+
+.myOrdersOrder:first-child {
+	background-color: var(--black);
+	width: 100%;
+	color: var(--white);
+	border: 3px solid var(--white);
+}
+
+.fixedNav {
+	position: fixed;
+	top: var(--nav-height);
+}
+
+.myOrdersOrder img {
+	width: 70px;
+}
+
+.myOrdersOrder p span {
+	color: var(--brown);
+}
+
+.myOrdersOrder p b {
+	font-weight: 500;
+	color: var(--black);
+}
+
+.myOrdersOrder button {
+	border: none;
+	padding: 12px 0px;
+	border-radius: 4px;
+	background-color: var(--black);
+	cursor: pointer;
+}
+
+.myOrdersDate {
+	font-size: 10px;
+}
+
+.myOrdersOrder span {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+@media (max-width: 900px) {
+	.myOrdersOrder {
+		grid-template-columns: 2fr 1fr;
+		row-gap: 5px;
+		font-size: 12px;
+	}
+
+	.myOrdersOrder button {
+		font-size: 10px;
+	}
+
+	.myOrdersOrder:nth-child(1) {
+		display: none;
+	}
+
+	.myOrdersOrder :nth-child(4) {
+		display: none;
+	}
+
+	.myOrdersOrder .myOrderImg {
+		display: none;
+	}
+
+    .featuredText {
+        font-size: 10px;
+    }
+}

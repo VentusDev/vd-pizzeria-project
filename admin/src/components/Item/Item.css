@@ -1,0 +1,143 @@
+.item{
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    -webkit-box-shadow: -9px 9px 24px 0px rgb(0, 0, 0);
+    -moz-box-shadow: -9px 9px 24px 0px rgb(0, 0, 0);
+    box-shadow: -9px 9px 24px 0px rgb(0, 0, 0);
+    transition: .3s;
+    animation: fadeIn;
+    min-height: 450px;
+    background: var(--white);
+}
+
+.item:hover{
+    transform: scale(1.05);
+}
+
+.itemImage{
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+    height: 200px;
+    object-fit: cover; 
+}
+
+.itemInfo{
+    padding: 20px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: space-between;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 80px 40px;
+    overflow: hidden;
+}
+
+.itemNameRating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.itemNameRating p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.itemNameRating img{
+    width: 70px;
+}
+
+.itemDesc{
+    color: var(--black);
+    font-size: 12px;
+    overflow-y: scroll;
+    height: 80px;
+}
+
+.itemPrice{
+    color: var(--black);
+    font-size: 22px;
+    font-weight: 500;
+    margin: 10px 0;    
+}
+
+.itemImageContainer{
+    position: relative;
+    height: 200px;
+    background-image: url('/vd.svg') no-repeat;
+}
+
+.itemImage{
+    height: 200px;
+}
+
+.itemImageContainer .add{
+    width: 35px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.itemCounter{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: var(--goldLight);
+    transition: .5s;
+    cursor: pointer;
+}
+
+
+.itemAddBg{
+    background-color: var(--black);
+}
+
+.itemCounter img{
+    width: 35px;
+}
+
+
+.animatedIcons img{
+	width: 30px;
+
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.animatedIcons{
+	filter: invert(70%) sepia(55%) saturate(697%) hue-rotate(334deg)
+		brightness(109%) contrast(92%);
+	transition: filter 0.5s;
+}
+.animatedIcons img:hover{
+	filter: invert(70%) sepia(55%) saturate(697%) hue-rotate(334deg)
+		brightness(109%) contrast(92%) hue-rotate(30deg);
+}
+/* Item Skeleton */
+
+.itemSkeleton{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    background: none;
+    min-height: 450px;
+  }
+  .itemSkeleton .rowContent{
+    flex: 1;
+    padding: .5rem;
+  }
+  .itemSkeleton .skeletonTitle{
+    display: grid;
+    grid-template-columns: 1fr .6fr;
+    gap: 30px;
+    margin-bottom: 1rem;
+  }

@@ -1,0 +1,40 @@
+.appContentHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 10px;
+    overflow: hidden;
+
+    #VentusDev{
+        width: 150px;
+    }
+
+    a{
+        max-width: 200px;
+        margin: 0 10px;
+    }
+
+    .appContentHeaderText{
+        color: var(--mainFC);
+    }
+
+    @media screen and (max-width: 750px) {
+        a{
+            max-width: 70px;
+        }
+
+        .appContentHeaderText{
+           font-size: 14px;
+           margin-left: 20px;
+        }
+
+        #VentusDev{
+            max-width: 70px;
+        }
+    }
+
+    .VentusDev{
+        fill: var(--goldLight);
+    }
+
+
+}

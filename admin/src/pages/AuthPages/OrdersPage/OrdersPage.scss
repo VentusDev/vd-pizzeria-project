@@ -1,0 +1,135 @@
+.orderList {
+	margin-top: 20px;
+	max-width: 60vw;
+}
+
+.orderItem {
+	display: grid;
+	grid-template-columns: minmax(130px, 1fr) minmax(90px, 0.5fr) minmax(
+			50px,
+			200px
+		) minmax(50px, 200px) minmax(100px, 200px) minmax(50px, 70px);
+	align-items: center;
+	gap: 30px;
+	padding: 20px;
+	width: 100%;
+	line-height: 2;
+	font-size: 12px;
+	color: var(--black);
+	border: 3px solid var(--white);
+	background-color: var(--grayLight);
+}
+
+.orderItem:nth-child(2n) {
+	background-color: var(--grayDark);
+	color: var(--white);
+}
+
+.orderItem:first-child {
+	background-color: var(--black);
+	color: var(--white);
+	border: 3px solid var(--white);
+	text-align: center;
+}
+
+.orderItemQuantity {
+	font-size: 20px;
+	align-items: center;
+	font-weight: 700;
+}
+
+.fixedNav {
+	position: fixed;
+	top: var(--nav-height);
+}
+
+.orderItem img {
+	width: 50px;
+}
+
+.orderItemItem .orderItemName {
+	font-weight: 600;
+}
+
+.orderItemAdress {
+	margin-bottom: 10px;
+}
+
+.orderItem select {
+	background-color: var(--second-color);
+	border: 1px solid var(--brown);
+	width: max(10vw, 120px);
+	padding: 10px;
+	outline: none;
+	text-align: start;
+}
+
+.orderItem p {
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+.orderItem .cross {
+	cursor: pointer;
+	background: var(--whiteDark);
+	border-radius: 50%;
+	width: 40%;
+	align-self: center;
+	justify-self: center;
+	transition: 1s ease;
+}
+
+.orderItem .cross:hover {
+	background: var(--redLight);
+}
+
+@media (max-width: 1000px) {
+	.orderItem {
+		font-size: 12px;
+		grid-template-columns: 2fr 1fr 1fr;
+		padding: 15px 8px;
+	}
+
+	.orderItem .cross {
+		width: 30px;
+	}
+
+	.orderItem select {
+		padding: 5px;
+		font-size: 12px;
+	}
+
+	.orderItem img {
+		width: 20px;
+	}
+
+	.orderItem b:last-child {
+		display: none;
+	}
+
+	.orderItemQuantity {
+		display: none !important;
+	}
+
+	.orderItem:nth-child(1) {
+		display: none;
+	}
+}
+
+@media (max-width: 850px) {
+	.orderItem {
+		grid-template-columns: 1fr 1fr;
+	}
+	.orderItem p {
+		font-size: 0.7rem;
+	}
+}
+
+@media (max-width: 550px) {
+	.orderItem {
+		grid-template-columns: 1fr;
+	}
+	.orderItem p {
+		font-size: 0.5rem;
+	}
+}

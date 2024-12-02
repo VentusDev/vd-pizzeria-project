@@ -1,0 +1,66 @@
+.addPage {
+	display: grid;
+	align-items: start;
+	grid-template-columns: 1fr;
+	max-width: 1500px;
+	max-height: 600px;
+	gap: 30px;
+	background-color: var(--goldLight);
+	.products-row {
+		max-width: 400px;
+		overflow: hidden;
+	}
+
+	.editButton {
+		display: block;
+	}
+
+	.searchBox {
+		max-height: 315px;
+		overflow-y: scroll;
+	}
+
+	@media (min-width: 1000px) {
+		grid-template-columns: 500px auto;
+
+		.tableView {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 30px;
+			padding: 30px 0;
+			max-height: 600px;
+			overflow-y: scroll;
+			.products-row {
+				max-height: 150px;
+			}
+		}
+	}
+}
+
+.addItemsBox {
+	flex-direction: row;
+}
+
+.addItemsBox .addDataBox {
+	grid-template-columns: 1fr 1fr;
+	width: 4%;
+	height: 150px;
+}
+
+.addPageFirst {
+	display: grid;
+	gap: 30px;
+}
+
+.userBox {
+	width: 100px;
+	height: 100px;
+	width: 100%;
+	height: 100%;
+}
+
+@media (min-width: 1000px) {
+	.addPage {
+		gap: 30px;
+	}
+}
