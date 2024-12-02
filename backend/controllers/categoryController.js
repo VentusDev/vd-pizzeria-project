@@ -70,24 +70,29 @@ const removeCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
 	try {
-		/* 		await categoryModel.findByIdAndUpdate(req.body.id, {
-			name: req.body.name,
-			description: req.body.description,
-			price: req.body.price,
-			category: req.body.category,
-		}); */
+
 		let user = '';
 		if (req.userId) {
 			user = await userModel.findById(req.userId);
 		}
-		if (req.file) {
+		const { id } = user;
+		const item = await categoryModel.findById(req.body.id);
+		if (user.isMaster || item.userId === id) {
 			await categoryModel.findByIdAndUpdate(req.body.id, {
-				image: req.file.filename,
-				img: req.body.img,
-				userId: user?._id,
+				name: req.body.name,
 			});
+			if (req.file) {
+				await categoryModel.findByIdAndUpdate(req.body.id, {
+					image: req.file.filename,
+					img: req.body.img,
+					userId: user?._id,
+				});
+			}
+			res.json({ success: true, message: customInfo.categoryUpdated });
+		} else {
+			res.json({ success: false, message: customErrors.noPermissions });
 		}
-		res.json({ success: true, message: customInfo.categoryUpdated });
+
 	} catch (error) {
 		console.log(error);
 		res.json({ success: false, message: customErrors.default });

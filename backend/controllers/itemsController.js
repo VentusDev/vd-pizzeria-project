@@ -81,7 +81,19 @@ const removeItem = async (req, res) => {
 };
 
 const updateItem = async (req, res) => {
-	try {
+	console.log(req.userId);
+	let user = '';
+	if (req.userId) {
+		user = await userModel.findById(req.userId);
+	}
+	const { id } = user;
+	const item = await itemsModel.findById(req.body.id);
+	try { 
+		
+		if (user.isMaster || item.userId === id) {
+		if (item.image !== 'default.png') {
+			//fs.unlink(`uploads/${item.image}`,()=>{})
+		}
 		await itemsModel.findByIdAndUpdate(req.body.id, {
 			name: req.body.name,
 			description: req.body.description,
@@ -95,6 +107,12 @@ const updateItem = async (req, res) => {
 			});
 		}
 		res.json({ success: true, message: customInfo.default });
+	} else {
+		res.json({ success: false, message: customErrors.noPermissions });
+	}
+
+	
+
 	} catch (error) {
 		console.log(error);
 		res.json({ success: false, message: 'error' });
