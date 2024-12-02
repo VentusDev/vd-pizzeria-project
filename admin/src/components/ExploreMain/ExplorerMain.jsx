@@ -5,7 +5,7 @@ import { useItemStore } from '@/store/itemStore';
 import { v4 as uuidv4 } from 'uuid';
 import { useVarStore } from '@/store/varStore';
 
-const ExploreMain = ({ category, setCategory, time }) => {
+const ExploreMain = ({ category, setCategory, time, handleScroll }) => {
 	const [mounted, setMounted] = useState(false);
 
 	const { beUrl } = useVarStore();
@@ -41,9 +41,10 @@ const ExploreMain = ({ category, setCategory, time }) => {
 					{list.map((item) => (
 						<div
 							onClick={() =>
-								setCategory((prev) =>
+								{setCategory((prev) =>
 									prev === item.name ? allCategoriesName : item.name
-								)
+								);
+								handleScroll()}
 							}
 							key={uuidv4()}
 							className='exploreMainListItem'

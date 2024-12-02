@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import { allCategoriesName } from '@/utils/variables';
 
@@ -11,6 +11,15 @@ import './Home.css';
 
 const Home = () => {
 	const [category, setCategory] = useState(allCategoriesName);
+	const catRef = useRef(null);
+
+	const handleScroll = () => {
+		//catRef.current?.scrollIntoView({ behavior: 'smooth' });
+		console.log(catRef.current.getBoundingClientRect().top);
+		const y = catRef.current.getBoundingClientRect().top + window.scrollY - 120;
+		window.scrollTo({top: y, behavior: 'smooth'})
+		
+	  };
 
 	const delayComponents = {
 		header: 500,
@@ -23,11 +32,12 @@ const Home = () => {
 		<>
 			<Header time={delayComponents.header} />
 			<ExploreMain
+				handleScroll={handleScroll}
 				category={category}
 				setCategory={setCategory}
 				time={delayComponents.category}
 			/>
-			<ItemsDisplay category={category} time={delayComponents.menu} />
+			<ItemsDisplay catRef={catRef} category={category} time={delayComponents.menu} />
 			<AppDownload time={delayComponents.app} />
 		</>
 	);

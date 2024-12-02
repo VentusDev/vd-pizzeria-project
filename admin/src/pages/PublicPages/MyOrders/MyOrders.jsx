@@ -76,10 +76,11 @@ const MyOrders = () => {
 					<Loader />
 				) : (
 					<div>
+					<h6 className='title textTogradient'>{formData.emailVerifyPlaceholder}</h6>
 						<Input
 							icon={Mail}
 							type='email'
-							placeholder={formData.emailVerifyPlaceholder}
+							placeholder={formData.emailPlaceholder}
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required

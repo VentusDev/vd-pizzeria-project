@@ -10,7 +10,7 @@ import NetworkErrorText from '../NetworkErrorText/NetworkErrorText.jsx';
 import ItemSkeleton from '../Item/ItemSkeleton';
 import { v4 as uuidv4} from 'uuid'
 
-const ItemsDisplay = ({ category, time }) => {
+const ItemsDisplay = ({ category, time, catRef }) => {
 
 	const [mounted, setMounted] = useState(false)
 
@@ -33,7 +33,7 @@ const ItemsDisplay = ({ category, time }) => {
 	return (
 		mounted && <div className='itemsDisplay FIAnim' id='itemsDisplay'>
 			{netErr && <NetworkErrorText />}
-			<div className='itemsDisplayList'>
+			<div className='itemsDisplayList' ref={catRef}>
 
 			
 				{dataLoading ? (
