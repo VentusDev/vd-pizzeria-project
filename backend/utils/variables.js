@@ -64,7 +64,9 @@ export const customErrors = {
     categoryAlreadyExists: 'kategoria o tej nazwie już istnieje',
     catDosentSaved: 'wystapił błąd poczas zapisywania kategorii',
 
-    userAlreadyIsAdmin: 'uprawnienia administratora są już przyznane'
+    userAlreadyIsAdmin: 'uprawnienia administratora są już przyznane',
+
+    noPermissions: 'brak uprawnień'
 
 
 

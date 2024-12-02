@@ -2,8 +2,13 @@ import itemsModel from '../models/itemsModel.js';
 //import fs from 'fs';
 import { customInfo, customErrors } from '../utils/variables.js';
 import categoryModel from '../models/categoryModel.js';
+import userModel from '../models/userModel.js';
 
 const addItems = async (req, res) => {
+	let user = '';
+	if (req.userId) {
+		user = await userModel.findById(req.userId);
+	}
 	let image_filename = req.file ? `${req.file.filename}` : 'default.png';
 
 	const items = new itemsModel({
@@ -12,6 +17,7 @@ const addItems = async (req, res) => {
 		price: req.body.price,
 		category: req.body.category,
 		image: image_filename,
+		userId: user?._id,
 	});
 	try {
 		await items.save();
@@ -52,14 +58,23 @@ const itemsCat = async (req, res) => {
 
 const removeItem = async (req, res) => {
 	try {
-		const item = await itemsModel.findById(req.body.id);
-		if (item.image !== 'default.png') {
-			console.log(item);
-			//fs.unlink(`uploads/${item.image}`,()=>{})
+		let user = '';
+		if (req.body.userId) {
+			user = await userModel.findById(req.body.userId);
 		}
 
-		await itemsModel.findByIdAndDelete(req.body.id);
-		res.json({ success: true, message: customInfo.itemRemoved });
+		const item = await itemsModel.findById(req.body.id);
+		const { id } = user;
+
+		if (user.isMaster || item.userId === id) {
+			if (item.image !== 'default.png') {
+				//fs.unlink(`uploads/${item.image}`,()=>{})
+			}
+			await itemsModel.findByIdAndDelete(req.body.id);
+			res.json({ success: true, message: customInfo.itemRemoved });
+		} else {
+			res.json({ success: false, message: customErrors.noPermissions });
+		}
 	} catch {
 		res.json({ success: false, message: customErrors.default });
 	}

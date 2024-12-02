@@ -54,7 +54,7 @@ const adminMiddleware = async (req, res, next) => {
 	const token = req.cookies.token;
 
 	if (!token) {
-		return res.json({ success: false, message: badLoginAgain });
+		return res.json({ success: false, message: customErrors.badLoginAgain });
 	}
 	try {
 		const token_decode = jwt.verify(token, process.env.JWT_SECRET);
@@ -66,7 +66,12 @@ const adminMiddleware = async (req, res, next) => {
 		});
 
 		if (!user) {
-			return res.json({ success: false, message: badLoginAgain });
+			return res.json({ success: false, message: customErrors.badLoginAgain });
+		}else{
+			if (token_decode) {
+				req.body.userId = token_decode.userId;
+				req.userId = token_decode.userId;
+			}
 		}
 		next();
 	} catch (error) {

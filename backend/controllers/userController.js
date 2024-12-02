@@ -444,9 +444,9 @@ const userEmails = async (req, res) => {
 };
 
 const setPermissions = async (req, res) => {
-	const { emailArr, per } = req.body;
+	const { emailArr, per, userId } = req.body;
 
-	console.log(emailArr);
+	console.log(req.body);
 	console.log(per);
 
 	try {
@@ -497,9 +497,13 @@ const setPermissions = async (req, res) => {
 					message: customErrors.userDosentExists,
 				});
 			}
-			user.isAdmin = per;
-			user.save();
-			if (process.env.MODE === 'production') {
+
+			if (!user.isMaster) {
+				user.isAdmin = per;
+				user.save();
+			}
+
+			if (process.env.MODE === 'production'&&!user.isMaster) {
 				var mailOptions = {
 					from: process.env.EMAIL,
 					to: email,
@@ -536,6 +540,8 @@ const setPermissions = async (req, res) => {
 				});
 			}
 		});
+
+
 
 		res.status(201).json({
 			success: true,

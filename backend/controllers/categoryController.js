@@ -1,4 +1,5 @@
 import categoryModel from '../models/categoryModel.js';
+import userModel from '../models/userModel.js';
 //import fs from 'fs';
 import { customErrors, customInfo } from '../utils/variables.js';
 
@@ -11,6 +12,11 @@ const addCategory = async (req, res) => {
 			.status(400)
 			.json({ success: false, message: customErrors.categoryAlreadyExists });
 	}
+
+	let user = '';
+	if (req.userId) {
+		user = await userModel.findById(req.userId);
+	}
 	let image_filename = req.file.filename
 		? `${req.file.filename}`
 		: 'default.png';
@@ -18,6 +24,7 @@ const addCategory = async (req, res) => {
 	const categories = new categoryModel({
 		name: name,
 		image: image_filename,
+		userId: user?._id,
 	});
 	try {
 		await categories.save();
@@ -39,17 +46,23 @@ const listCategories = async (req, res) => {
 };
 
 const removeCategory = async (req, res) => {
-	console.log(req.body);
 	try {
+		let user = '';
+		if (req.userId) {
+			user = await userModel.findById(req.userId);
+		}
+
 		const item = await categoryModel.findById(req.body.id);
 		if (item.image !== 'default.png') {
 			//fs.unlink(`uploads/${item.image}`,()=>{})
 		}
-
-		const cat = await categoryModel.findByIdAndDelete(req.body.id);
-		console.log(cat);
-
-		res.json({ success: true, message: customInfo.categoryRemoved });
+		const { id } = user;
+		if (user.isMaster || item.userId === id) {
+			await categoryModel.findByIdAndDelete(req.body.id);
+			res.json({ success: true, message: customInfo.categoryRemoved });
+		} else {
+			res.json({ success: false, message: customErrors.noPermissions });
+		}
 	} catch {
 		res.json({ success: false, message: customErrors.default });
 	}
@@ -57,16 +70,21 @@ const removeCategory = async (req, res) => {
 
 const updateCategory = async (req, res) => {
 	try {
-		await categoryModel.findByIdAndUpdate(req.body.id, {
+		/* 		await categoryModel.findByIdAndUpdate(req.body.id, {
 			name: req.body.name,
 			description: req.body.description,
 			price: req.body.price,
 			category: req.body.category,
-		});
+		}); */
+		let user = '';
+		if (req.userId) {
+			user = await userModel.findById(req.userId);
+		}
 		if (req.file) {
 			await categoryModel.findByIdAndUpdate(req.body.id, {
 				image: req.file.filename,
 				img: req.body.img,
+				userId: user?._id,
 			});
 		}
 		res.json({ success: true, message: customInfo.categoryUpdated });

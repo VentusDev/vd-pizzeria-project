@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema(
 		lastLogin: {type: Date,default: Date.now,},
 		isVerified: {type: Boolean,default: false,},
 		isAdmin: {type: Boolean,default: false,},
+		isMaster: {type: Boolean,default: false,},
 		cartData: {type: Object,default: {}},
 		address: {type: Object,default: {},},
 		rabat: {type: Object,default: {},},
